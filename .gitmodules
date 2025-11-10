@@ -14,3 +14,7 @@
 	path = modules/mem
 	url = https://github.com/nishio/mem
 	branch = master
+[submodule "modules/external_brain_in_markdown_english"]
+	path = modules/external_brain_in_markdown_english
+	url = https://github.com/nishio/external_brain_in_markdown_english
+	branch = main
