@@ -1,0 +1,16 @@
+[submodule "modules/external_brain_in_markdown"]
+	path = modules/external_brain_in_markdown
+	url = https://github.com/nishio/external_brain_in_markdown
+	branch = main
+[submodule "modules/from_scrapbox"]
+	path = modules/from_scrapbox
+	url = https://github.com/nishio/from_scrapbox
+	branch = main
+[submodule "modules/etude-github-actions"]
+	path = modules/etude-github-actions
+	url = https://github.com/nishio/etude-github-actions
+	branch = main
+[submodule "modules/mem"]
+	path = modules/mem
+	url = https://github.com/nishio/mem
+	branch = master
