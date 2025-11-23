@@ -240,3 +240,11 @@ DRYと疎結合のトレードオフ https://scrapbox.io/nishio/DRY%E3%81%A8%E7%
 ちぎれた世界を縫い止める糸 https://scrapbox.io/nishio/%E3%81%A1%E3%81%8E%E3%82%8C%E3%81%9F%E4%B8%96%E7%95%8C%E3%82%92%E7%B8%AB%E3%81%84%E6%AD%A2%E3%82%81%E3%82%8B%E7%B3%B8
 中割り https://scrapbox.io/nishio/%E4%B8%AD%E5%89%B2%E3%82%8A
 解像度の段階 https://scrapbox.io/nishio/%E8%A7%A3%E5%83%8F%E5%BA%A6%E3%81%AE%E6%AE%B5%E9%9A%8E
+
+何を見るメガネなのか https://scrapbox.io/nishio/%E4%BD%95%E3%82%92%E8%A6%8B%E3%82%8B%E3%83%A1%E3%82%AC%E3%83%8D%E3%81%AA%E3%81%AE%E3%81%8B
+LLMがもたらす組織構造の変化 https://scrapbox.io/nishio/LLM%E3%81%8C%E3%82%82%E3%81%9F%E3%82%89%E3%81%99%E7%B5%84%E7%B9%94%E6%A7%8B%E9%80%A0%E3%81%AE%E5%A4%89%E5%8C%96
+コンヴィヴィアリティ https://scrapbox.io/nishio/%E3%82%B3%E3%83%B3%E3%83%B4%E3%82%A3%E3%83%B4%E3%82%A3%E3%82%A2%E3%83%AA%E3%83%86%E3%82%A3
+2018-09-20思考の結節点 https://scrapbox.io/nishio/2018-09-20%E6%80%9D%E8%80%83%E3%81%AE%E7%B5%90%E7%AF%80%E7%82%B9
+なぜ知的生産術に投資するのか、の補足 https://scrapbox.io/nishio/%E3%81%AA%E3%81%9C%E7%9F%A5%E7%9A%84%E7%94%9F%E7%94%A3%E8%A1%93%E3%81%AB%E6%8A%95%E8%B3%87%E3%81%99%E3%82%8B%E3%81%AE%E3%81%8B%E3%80%81%E3%81%AE%E8%A3%9C%E8%B6%B3
+複数の人間を一人ととらえるバグ https://scrapbox.io/nishio/%E8%A4%87%E6%95%B0%E3%81%AE%E4%BA%BA%E9%96%93%E3%82%92%E4%B8%80%E4%BA%BA%E3%81%A8%E3%81%A8%E3%82%89%E3%81%88%E3%82%8B%E3%83%90%E3%82%B0
+

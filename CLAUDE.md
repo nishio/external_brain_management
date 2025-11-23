@@ -136,8 +136,29 @@ make vt-commit
 #### 注意事項
 
 - `vt-translate` はOpenAI APIを使用するため、クレジットが必要です
+  - `.env`ファイルに`OPENAI_API_KEY`を設定する必要があります
+  - API quotaエラーが発生した場合は、OpenAIのダッシュボードで確認してください
 - `vt-all` は全ステップを順次実行するため、翻訳ページ数によっては時間がかかります
+  - 大量のページ（100+）を翻訳する場合、バックグラウンド実行を推奨
 - 途中でエラーが発生した場合は、個別ステップで該当箇所から再実行できます
+  - スクリプトは冪等性を持つため、同じステップを複数回実行しても安全です
+
+#### ワークフロー完了後の確認
+
+翻訳完了後は以下を確認してください：
+
+```bash
+# 1. vt_config.jsonでpage_enがnullのエントリを確認
+cd modules/mem
+node -e "const c=require('./vt_config.json'); c.illusts.filter(i=>!i.page_en).forEach(i=>console.log('ID',i.id,':',i.page_ja))"
+
+# 2. 翻訳ファイルがすべて移動されたか確認
+ls translations/vt/ | wc -l  # 0になっているはず
+
+# 3. 各リポジトリの状態確認
+cd /Users/nishio/external_brain_management
+make status
+```
 
 ### サブモジュール内での作業
 
@@ -292,6 +313,32 @@ git push origin main
   - GitHub Markdown = 人間とAIが共同作業する場
   - `external_brain_in_markdown` = 人間由来データのストレージ
   - AI生成データ = 別フォルダーで管理（混在を防ぐ）
+
+## 環境変数の設定
+
+VT翻訳スクリプトを使用する場合、以下の環境変数が必要です。
+
+### 必要な環境変数
+
+`.env`ファイルをプロジェクトルートに作成してください：
+
+```bash
+# .env (このリポジトリのルート)
+OPENAI_API_KEY=sk-xxx...  # OpenAI API Key（VT翻訳に使用）
+```
+
+**重要**:
+- `.env`ファイルは`.gitignore`に含まれており、Gitにコミットされません
+- API Keyは絶対に公開リポジトリにコミットしないでください
+- サブモジュール（`modules/mem`など）からも`.env`を参照できます
+
+### 環境変数の確認
+
+```bash
+# .envが正しく読み込まれているか確認
+cd modules/mem
+node -e "require('dotenv').config({path:'../../.env'}); console.log('OPENAI_API_KEY:', process.env.OPENAI_API_KEY ? '設定済み' : '未設定')"
+```
 
 ## 注意事項
 
