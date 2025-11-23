@@ -77,6 +77,47 @@ git submodule update --init --remote --recursive
 make status
 ```
 
+### VT（Visual Thinking）翻訳ワークフロー
+
+`add_new_vt.txt` に追加したVTページを翻訳し、vt_config.jsonを更新して全リポジトリにコミットするワークフローを自動化しています。
+
+#### 基本的な使い方
+
+```bash
+# 現在の状態を確認
+make vt-status
+
+# 全ステップを一度に実行（推奨）
+make vt-all
+```
+
+#### 個別ステップの実行
+
+トラブルシューティングや部分的な実行が必要な場合は、個別のステップを実行できます：
+
+```bash
+# ステップ1: add_new_vt.txt からvt_config.jsonに新規ページを追加
+make vt-add
+
+# ステップ2: 未翻訳ページを翻訳（OpenAI gpt-4o使用、時間がかかります）
+make vt-translate
+
+# ステップ3: 翻訳ファイルをexternal_brain_in_markdown_englishに移動
+make vt-move
+
+# ステップ4: 翻訳ファイルからタイトルを抽出してvt_config.jsonを更新
+make vt-update-config
+
+# ステップ5: 全リポジトリにコミット＆プッシュ
+make vt-commit
+```
+
+#### 注意事項
+
+- `vt-translate` はOpenAI APIを使用するため、クレジットが必要です
+- `vt-all` は全ステップを順次実行するため、翻訳ページ数によっては時間がかかります
+- 途中でエラーが発生した場合は、個別ステップで該当箇所から再実行できます
+
 ### サブモジュール内での作業
 
 **重要**: サブモジュールディレクトリ内で直接作業する場合の注意点：
