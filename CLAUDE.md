@@ -208,6 +208,52 @@ git pull
 cd ../..
 ```
 
+### 大文字小文字の重複ファイル問題
+
+macOSのファイルシステムは大文字小文字を区別しませんが、Gitは区別するため、Git上に大文字版と小文字版のファイルが同時に存在する場合があります（例: `Bashi.md` と `bashi.md`）。
+
+この問題を自動的に解決するスクリプトを用意しています：
+
+```bash
+# external_brain_in_markdownリポジトリで実行
+cd modules/external_brain_in_markdown
+../../scripts/fix_case_duplicates.sh
+
+# または他のサブモジュールで実行
+cd modules/サブモジュール名
+../../scripts/fix_case_duplicates.sh
+```
+
+**スクリプトの動作:**
+1. Git上の大文字小文字の重複ファイルを検出
+2. 各ファイルの最終コミット日時を確認
+3. 古い方を削除、新しい方を保持
+4. 確認プロンプトを表示（安全のため）
+
+**手動で確認する場合:**
+
+```bash
+# 重複ファイルの検出
+git ls-files | sort | tr '[:upper:]' '[:lower:]' | uniq -d
+
+# 特定ファイルの最終更新日時を確認
+git log -1 --format="%ai %s" -- pages/ファイル名.md
+```
+
+**コミット後:**
+
+```bash
+# 変更をコミット
+git commit -m "chore: remove duplicate files with case differences"
+git push origin main
+
+# メインリポジトリでサブモジュールポインタを更新
+cd ../..
+git add modules/サブモジュール名
+git commit -m "chore: update submodule after case cleanup"
+git push origin main
+```
+
 ## メンテナンス
 
 ### 定期チェック項目
