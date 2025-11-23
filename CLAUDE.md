@@ -77,6 +77,27 @@ git submodule update --init --remote --recursive
 make status
 ```
 
+### リポジトリの同期（整理＆プッシュ）
+
+変更を簡潔なコミットメッセージで整理してプッシュします。長いコミットメッセージによるエラーを回避します。
+
+```bash
+# 全リポジトリを一括同期（推奨）
+make sync-all
+
+# 個別のリポジトリを同期
+make sync-mem           # memのみ
+make sync-english       # external_brain_in_markdown_englishのみ
+make sync-japanese      # external_brain_in_markdownのみ
+make sync-main          # メインリポジトリのみ
+```
+
+**動作**:
+- 変更がある場合のみコミット＆プッシュ
+- 変更がない場合はスキップ
+- コミットメッセージは簡潔（"chore: update ..."形式）
+- エラーを適切に処理
+
 ### VT（Visual Thinking）翻訳ワークフロー
 
 `add_new_vt.txt` に追加したVTページを翻訳し、vt_config.jsonを更新して全リポジトリにコミットするワークフローを自動化しています。

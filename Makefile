@@ -1,10 +1,49 @@
-.PHONY: update status vt-add vt-translate vt-move vt-update-config vt-commit vt-all vt-status
+.PHONY: update status sync-mem sync-english sync-japanese sync-main sync-all vt-add vt-translate vt-move vt-update-config vt-commit vt-all vt-status
 
 update:
 	git submodule update --init --remote --recursive
 
 status:
 	git submodule foreach 'echo $$name && git rev-parse --abbrev-ref HEAD && git log -1 --oneline'
+
+# Repository Sync (簡潔なコミットメッセージで整理＆プッシュ)
+# ========================================================
+
+# Sync mem repository
+sync-mem:
+	@echo "=== Syncing mem ==="
+	@cd modules/mem && \
+		(git add . && git diff --cached --quiet || \
+		(git commit -m "chore: update mem" && git push origin main)) || \
+		echo "No changes in mem"
+
+# Sync external_brain_in_markdown_english repository
+sync-english:
+	@echo "=== Syncing external_brain_in_markdown_english ==="
+	@cd modules/external_brain_in_markdown_english && \
+		(git add . && git diff --cached --quiet || \
+		(git commit -m "chore: update pages" && git push origin main)) || \
+		echo "No changes in english"
+
+# Sync external_brain_in_markdown repository
+sync-japanese:
+	@echo "=== Syncing external_brain_in_markdown ==="
+	@cd modules/external_brain_in_markdown && \
+		(git add . && git diff --cached --quiet || \
+		(git commit -m "chore: update pages" && git push origin main)) || \
+		echo "No changes in japanese"
+
+# Sync main repository
+sync-main:
+	@echo "=== Syncing main repository ==="
+	@git add -A && \
+		(git diff --cached --quiet || \
+		(git commit -m "chore: sync submodules" && git push origin main)) || \
+		echo "No changes in main"
+
+# Sync all repositories (サブモジュール→メインの順)
+sync-all: sync-mem sync-english sync-japanese sync-main
+	@echo "=== All repositories synced ==="
 
 # VT Translation Workflow
 # =======================
@@ -39,21 +78,16 @@ vt-update-config:
 
 # Step 5: Commit and push all changes across repos
 vt-commit:
-	@echo "=== Committing and pushing changes ==="
-	@echo "--- Committing to external_brain_in_markdown_english ---"
-	cd modules/external_brain_in_markdown_english && \
-		git add . && \
-		git commit -m "Add new VT translations" && \
-		git push origin main
-	@echo "--- Committing to mem ---"
-	cd modules/mem && \
-		git add vt_config.json && \
-		git commit -m "Update vt_config.json with new VT pages" && \
-		git push origin main
-	@echo "--- Committing to external_brain_management ---"
-	git add modules/mem modules/external_brain_in_markdown_english add_new_vt.txt && \
-		git commit -m "chore: update VT translations and config" && \
-		git push origin main
+	@echo "=== Committing and pushing VT changes ==="
+	@cd modules/external_brain_in_markdown_english && \
+		(git add . && git diff --cached --quiet || \
+		(git commit -m "Add VT translations" && git push origin main))
+	@cd modules/mem && \
+		(git add vt_config.json && git diff --cached --quiet || \
+		(git commit -m "Update VT config" && git push origin main))
+	@git add modules/mem modules/external_brain_in_markdown_english add_new_vt.txt && \
+		(git diff --cached --quiet || \
+		(git commit -m "chore: update VT" && git push origin main))
 
 # Full VT translation workflow (all steps)
 vt-all: vt-add vt-translate vt-move vt-update-config vt-commit
