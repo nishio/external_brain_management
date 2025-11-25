@@ -473,11 +473,37 @@ memサブモジュールの詳細は `modules/mem/CLAUDE.md` を参照してく�
 
 **実装ファイル**: `modules/mem/pages/[lang]/vt/index.tsx`
 
+## ドキュメント管理
+
+### 現在進行中のPLAN
+
+- **PLAN.md**: Visual Thinking Gallery改善の実装計画（Week 1-4）
+
+### 完了したPLAN
+
+完了したPLANファイルは `docs/diary/completed_plans/` に保管しています：
+
+- **PLAN_ADD_NEW_VT.md**: add_new_vt.txtからVTページ追加（2025-11-22完了）
+- **PLAN_ENGLISH_VT.md**: 英語版VTページ検出とvt_config.json更新（2025-11-22完了）
+- **PLAN_VT_HIGH_QUALITY_TRANSLATION.md**: OpenAI gpt-4o翻訳移行（2025-11-15完了）
+- **PLAN_ILLUST_IMPROVEMENT.md**: illustからVTへのブランド移行（2025-11-12完了）
+
+詳細は `docs/diary/completed_plans/README.md` を参照してください。
+
+### ドキュメントの役割分担
+
+- **CLAUDE.md**: 永続的な知識ベース（常に参照）
+- **PLAN.md**: 現在進行中の実装計画
+- **docs/vision.md**: プロジェクトの哲学と原則
+- **docs/diary/**: 時系列の作業記録
+- **docs/diary/completed_plans/**: 完了した計画の保管
+
 ## 参考リンク
 
 - [初期設計メモ](./initial_chat.md)
 - [GitHub Actions自動化プラン](./docs/GITHUB_ACTIONS_PLAN.md)
 - [Visual Thinking実装計画](./PLAN.md)
 - [プロジェクトビジョン](./docs/vision.md)
+- [完了したPLAN](./docs/diary/completed_plans/)
 - [Scrapbox: From_Scrapbox](https://scrapbox.io/nishio/From_Scrapbox)
 - [Scrapbox: etude-github-actions](https://scrapbox.io/nishio/etude-github-actions)
