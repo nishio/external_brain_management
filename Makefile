@@ -1,4 +1,4 @@
-.PHONY: update status sync-mem sync-english sync-japanese sync-main sync-all vt-add vt-translate vt-move vt-update-config vt-commit vt-all vt-status scrapbox-sync scrapbox-sync-en
+.PHONY: update status sync-mem sync-english sync-japanese sync-main sync-all vt-add vt-translate vt-move vt-update-config vt-commit vt-all vt-quick vt-status scrapbox-sync scrapbox-sync-en
 
 update:
 	git submodule update --init --remote --recursive
@@ -92,6 +92,25 @@ vt-commit:
 # Full VT translation workflow (all steps)
 vt-all: vt-add vt-translate vt-move vt-update-config vt-commit
 	@echo "=== VT translation workflow completed ==="
+
+# Quick VT add+translate+push workflow
+# Usage: echo "ページ名 https://scrapbox.io/nishio/..." >> add_new_vt.txt && make vt-quick
+vt-quick:
+	@echo "=== Quick VT workflow: add → translate → push ==="
+	@cd modules/mem && node scripts/add_from_add_new_vt.js
+	@cd modules/mem && pnpm tsx scripts/translate_vt_pages.ts
+	@cd modules/mem && pnpm tsx scripts/move_vt_translations.ts
+	@cd modules/mem && node scripts/update_page_en_from_translations.js
+	@cd modules/external_brain_in_markdown_english && \
+		(git pull --rebase && git add . && git diff --cached --quiet || \
+		(git commit -m "feat: add VT translations" && git push origin main))
+	@cd modules/mem && \
+		(git add vt_config.json && git diff --cached --quiet || \
+		(git commit -m "feat: update VT config with new pages and translations" && git push origin master))
+	@git add -A && \
+		(git diff --cached --quiet || \
+		(git commit -m "chore: sync submodules after VT updates" && git push origin main))
+	@echo "=== Quick VT workflow completed ==="
 
 # Scrapbox Sync (Manual)
 # ======================
