@@ -30,4 +30,6 @@ nav-linkの間にmarginがない
 Scrapbox側が更新された時どうする
 まず1日くらい経ってたならGitHub側のexternal-brain*が更新されているはずでは？
 それとは別にexternal-brainを更新する手軽な方法があればいい
+→これは解決したね？
 
+終わったら一連の作業のMakefile化と、翻訳プロセスが遅すぎるので並列実行を考えて
