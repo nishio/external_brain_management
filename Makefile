@@ -1,4 +1,4 @@
-.PHONY: update status sync-mem sync-english sync-japanese sync-main sync-all vt-add vt-translate vt-move vt-update-config vt-commit vt-all vt-status
+.PHONY: update status sync-mem sync-english sync-japanese sync-main sync-all vt-add vt-translate vt-move vt-update-config vt-commit vt-all vt-status scrapbox-sync scrapbox-sync-en
 
 update:
 	git submodule update --init --remote --recursive
@@ -92,3 +92,33 @@ vt-commit:
 # Full VT translation workflow (all steps)
 vt-all: vt-add vt-translate vt-move vt-update-config vt-commit
 	@echo "=== VT translation workflow completed ==="
+
+# Scrapbox Sync (Manual)
+# ======================
+# 1日1回の自動同期を待たずに、最新のScrapboxデータを即座に取得してGitHubにpush
+
+# Sync Japanese Scrapbox (nishio) → external_brain_in_markdown
+scrapbox-sync:
+	@echo "=== Syncing from Scrapbox (nishio) to external_brain_in_markdown ==="
+	@if [ ! -f modules/from_scrapbox/.env ]; then \
+		echo "ERROR: modules/from_scrapbox/.env not found"; \
+		echo "Please create .env with SID variable"; \
+		exit 1; \
+	fi
+	@cd modules/from_scrapbox && bash tasks/update_markdown/run.sh
+	@echo "=== Scrapbox sync completed ==="
+	@echo "Note: Changes have been pushed to external_brain_in_markdown repository"
+	@echo "To update submodule pointer in main repo, run: make sync-main"
+
+# Sync English Scrapbox (nishio-en) → external_brain_in_markdown_english
+scrapbox-sync-en:
+	@echo "=== Syncing from Scrapbox (nishio-en) to external_brain_in_markdown_english ==="
+	@if [ ! -f modules/from_scrapbox/.env ]; then \
+		echo "ERROR: modules/from_scrapbox/.env not found"; \
+		echo "Please create .env with SID variable"; \
+		exit 1; \
+	fi
+	@cd modules/from_scrapbox && bash tasks/update_markdown_english/run.sh
+	@echo "=== Scrapbox English sync completed ==="
+	@echo "Note: Changes have been pushed to external_brain_in_markdown_english repository"
+	@echo "To update submodule pointer in main repo, run: make sync-main"

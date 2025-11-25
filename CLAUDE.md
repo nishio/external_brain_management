@@ -98,6 +98,59 @@ make sync-main          # メインリポジトリのみ
 - コミットメッセージは簡潔（"chore: update ..."形式）
 - エラーを適切に処理
 
+### Scrapbox即時同期（Manual Sync）
+
+**目的**: 1日1回の自動同期を待たずに、最新のScrapboxデータを即座に取得してGitHubにpush
+
+#### 前提条件
+
+`modules/from_scrapbox/.env` ファイルが必要です。以下の内容を作成してください：
+
+```bash
+# modules/from_scrapbox/.env
+SID=your_scrapbox_session_id
+```
+
+**SIDの取得方法**:
+1. Scrapboxにログイン
+2. ブラウザの開発者ツールを開く（F12）
+3. Application → Cookies → `https://scrapbox.io`
+4. `connect.sid` の値をコピー
+
+#### 使い方
+
+```bash
+# 日本語Scrapbox (nishio) → external_brain_in_markdown
+make scrapbox-sync
+
+# 英語Scrapbox (nishio-en) → external_brain_in_markdown_english
+make scrapbox-sync-en
+```
+
+#### 動作
+
+1. Scrapboxから最新のJSONをエクスポート（Python）
+2. JSONをMarkdownに変換（Deno）
+3. external_brain_in_markdown（または_english）にコピー
+4. 自動的にコミット＆プッシュ
+
+#### 注意事項
+
+- **サブモジュールポインタは自動更新されません**
+- 実行後、メインリポジトリで `make sync-main` を実行してポインタを更新してください
+
+#### ユースケース
+
+- Scrapboxで新しいVTページを作成した直後に、memで即座に表示したい
+- 翻訳パイプラインの動作確認（1日待たずにテスト）
+- Markdown変換の動作確認
+
+#### 依存関係
+
+- Python 3.10+ (requirements.txtに記載)
+- Deno v1.x
+- Git認証設定（GitHub push用）
+
 ### VT（Visual Thinking）翻訳ワークフロー
 
 `add_new_vt.txt` に追加したVTページを翻訳し、vt_config.jsonを更新して全リポジトリにコミットするワークフローを自動化しています。

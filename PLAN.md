@@ -139,6 +139,12 @@
 - ✅ 「図を先に見る」哲学を損なわない形で実装（タイトルなし、画像のみ）
 - ✅ TypeScriptビルドエラーなし
 
+**次のアクション（TODO）**:
+- [ ] vt_config.jsonに `featured: true` を追加してテスト
+  - nishioが紹介したいイラストを選択
+  - ローカルで `yarn dev` して http://localhost:3000/ja/vt で確認
+  - 問題なければデプロイ（既にmasterにpush済み、Vercelで自動デプロイ）
+
 ---
 
 ## Week 3-4: 最適化とガイダンス（低〜中優先度）
