@@ -393,29 +393,43 @@ git push origin main
 
 ## 環境変数の設定
 
-VT翻訳スクリプトを使用する場合、以下の環境変数が必要です。
+このプロジェクトでは2種類の`.env`ファイルが必要です：
 
-### 必要な環境変数
+### 1. プロジェクトルートの `.env`（VT翻訳用）
 
-`.env`ファイルをプロジェクトルートに作成してください：
+VT翻訳スクリプトを使用する場合：
 
 ```bash
 # .env (このリポジトリのルート)
 OPENAI_API_KEY=sk-xxx...  # OpenAI API Key（VT翻訳に使用）
 ```
 
-**重要**:
-- `.env`ファイルは`.gitignore`に含まれており、Gitにコミットされません
-- API Keyは絶対に公開リポジトリにコミットしないでください
-- サブモジュール（`modules/mem`など）からも`.env`を参照できます
-
-### 環境変数の確認
-
+**確認方法**:
 ```bash
-# .envが正しく読み込まれているか確認
 cd modules/mem
 node -e "require('dotenv').config({path:'../../.env'}); console.log('OPENAI_API_KEY:', process.env.OPENAI_API_KEY ? '設定済み' : '未設定')"
 ```
+
+### 2. from_scrapboxの `.env`（Scrapbox同期用）
+
+Scrapbox即時同期（`make scrapbox-sync`）を使用する場合：
+
+```bash
+# modules/from_scrapbox/.env
+SID=your_scrapbox_session_id
+```
+
+**SID取得方法**:
+1. Scrapboxにログイン
+2. ブラウザの開発者ツール（F12）
+3. Application → Cookies → `https://scrapbox.io`
+4. `connect.sid` の値をコピー
+
+### 重要事項
+
+- **両方の`.env`ファイルは`.gitignore`に含まれており、Gitにコミットされません**
+- **API Key/SIDは絶対に公開リポジトリにコミットしないでください**
+- サブモジュール（`modules/mem`など）からもルートの`.env`を参照できます
 
 ## 注意事項
 
@@ -434,9 +448,36 @@ node -e "require('dotenv').config({path:'../../.env'}); console.log('OPENAI_API_
 - ✅ 特定バージョンへの固定（再現性の確保）
 - ❌ ビルドやデプロイは行わない
 
+## Visual Thinking Gallery (mem)
+
+memサブモジュールの詳細は `modules/mem/CLAUDE.md` を参照してください。
+
+### 重要なポイント
+
+- **デフォルトブランチ**: `master`（他のリポジトリは`main`）
+- **デプロイ前の必須チェック**: `yarn build` で型エラーがないことを確認
+- **デプロイ**: masterにpushすると自動的にVercelデプロイ
+
+### Featured Illustrations機能（2025-11-25実装）
+
+**目的**: 初回訪問者が最初の一歩を踏み出しやすくする
+
+**実装**:
+- `vt_config.json` に `featured?: boolean` フラグを追加可能
+- `/[lang]/vt` エントランスページ上部にFeatured専用セクションを表示
+- 青いボーダーで視覚的に区別、タイトルは非表示（「図を先に見る」哲学を維持）
+
+**テスト待ち**:
+- `featured: true` を追加してローカルで確認: `cd modules/mem && yarn dev`
+- 問題なければ、Vercelで自動デプロイ（既にmasterにpush済み）
+
+**実装ファイル**: `modules/mem/pages/[lang]/vt/index.tsx`
+
 ## 参考リンク
 
 - [初期設計メモ](./initial_chat.md)
 - [GitHub Actions自動化プラン](./docs/GITHUB_ACTIONS_PLAN.md)
+- [Visual Thinking実装計画](./PLAN.md)
+- [プロジェクトビジョン](./docs/vision.md)
 - [Scrapbox: From_Scrapbox](https://scrapbox.io/nishio/From_Scrapbox)
 - [Scrapbox: etude-github-actions](https://scrapbox.io/nishio/etude-github-actions)
