@@ -1,5 +1,12 @@
 # PLAN: add_new_vt.txtから新しいVisual Thinkingを追加
 
+**✅ 完了日**: 2025-11-22
+**実装**: `modules/mem/scripts/add_from_add_new_vt.js`
+**使用方法**: `make vt-add`（Makefileのvt-addターゲットで実行）
+**移動日**: 2025-11-25
+
+---
+
 ## 現状
 
 ### vt_config.json
