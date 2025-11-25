@@ -155,13 +155,35 @@ make scrapbox-sync-en
 
 `add_new_vt.txt` に追加したVTページを翻訳し、vt_config.jsonを更新して全リポジトリにコミットするワークフローを自動化しています。
 
-#### 基本的な使い方
+#### 最も簡単な使い方（推奨）
+
+```bash
+# 1. add_new_vt.txtにページを追加
+echo "ページ名 https://scrapbox.io/nishio/..." >> add_new_vt.txt
+
+# 2. 追加・翻訳・pushを一括実行
+make vt-quick
+```
+
+**`vt-quick`の動作**:
+1. add_new_vt.txtからVTページを追加
+2. OpenAI gpt-4oで翻訳
+3. 翻訳ファイルをexternal_brain_in_markdown_englishに移動
+4. vt_config.jsonを自動更新
+5. 全リポジトリをcommit & push（rebase付き）
+
+**メリット**:
+- 翻訳を忘れることがない
+- 自動的にgit pull --rebaseでコンフリクト回避
+- 1コマンドで全工程完了
+
+#### その他の使い方
 
 ```bash
 # 現在の状態を確認
 make vt-status
 
-# 全ステップを一度に実行（推奨）
+# 全ステップを個別に実行（トラブルシューティング時）
 make vt-all
 ```
 
