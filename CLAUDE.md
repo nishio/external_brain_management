@@ -98,7 +98,47 @@ make sync-main          # メインリポジトリのみ
 - コミットメッセージは簡潔（"chore: update ..."形式）
 - エラーを適切に処理
 
-### Scrapbox即時同期（Manual Sync）
+### Scrapbox同期に関する重要な概念の区別
+
+**⚠️ 混同してはいけない2つの操作**
+
+#### A: GitHubにあるMarkdownをpull（軽量・高頻度）
+```bash
+cd modules/external_brain_in_markdown
+git pull origin main
+```
+- **目的**: 他の環境（GitHub Actions等）で既に更新されたMarkdownを取得
+- **所要時間**: 数秒
+- **頻度**: 高い（VTワークフローでは毎回実行）
+- **使用例**: `make vt-add` の中で自動実行
+
+#### B: ScrapboxからMarkdown化してGitHubにpush（重い・低頻度）
+```bash
+make scrapbox-sync
+```
+- **実際の処理**:
+  1. Scrapbox APIからJSONをexport
+  2. JSONをMarkdownに変換
+  3. external_brain_in_markdownリポジトリにpush
+- **所要時間**: 数分～十数分（Scrapboxの全ページを処理）
+- **頻度**: 低い（1日1回の自動実行、または手動で最新を即座に取得したい時のみ）
+- **使用例**: Scrapboxで新しいVTページを作成した直後に、即座にmemで表示したい場合
+
+**通常のVTワークフロー**:
+- **A (git pull)** で十分（1日1回の自動同期が動いているため）
+- **B (scrapbox-sync)** は「今すぐ最新のScrapboxデータが必要」な場合のみ手動実行
+
+**例**:
+```bash
+# 通常のワークフロー（A: git pullのみ）
+make vt-add  # 内部で git pull origin main を実行
+
+# 今すぐScrapboxの最新データが必要な場合（B → A）
+make scrapbox-sync  # B: Scrapboxから取得してpush
+make vt-add         # A: GitHubからpullして追加
+```
+
+### Scrapbox即時同期（Manual Sync）- B操作の詳細
 
 **目的**: 1日1回の自動同期を待たずに、最新のScrapboxデータを即座に取得してGitHubにpush
 
@@ -153,9 +193,38 @@ make scrapbox-sync-en
 
 ### VT（Visual Thinking）翻訳ワークフロー
 
-`add_new_vt.txt` に追加したVTページを翻訳し、vt_config.jsonを更新して全リポジトリにコミットするワークフローを自動化しています。
+VTページを追加する方法は2つあります：
 
-#### 最も簡単な使い方（推奨）
+#### 方法1: Web UI（推奨） - URL-based関連ページ発見
+
+開発環境で `/admin/vt` にアクセスして、関連ページを視覚的に選択して追加：
+
+```bash
+# 開発サーバーを起動
+cd modules/mem
+yarn dev
+# http://localhost:3000/admin/vt にアクセス
+```
+
+**使い方**:
+1. Scrapbox URLを入力（例: `https://scrapbox.io/nishio/すべての人は最先端`）
+2. 「Fetch Related Pages」ボタンをクリック
+3. 関連ページが画像付きで表示される:
+   - → forward: このページがリンクしている先
+   - ← backward: このページにリンクしている元
+   - ↔ 2-hop: 2ホップ先のページ
+4. チェックボックスで複数選択 or 個別に「Add」ボタン
+5. 「Add Selected」で一括追加
+
+**特徴**:
+- 画像を見ながら選択できる
+- 追加済み・スキップ済みページはグレーアウト表示
+- 重複は自動排除
+- 開発環境のみアクセス可能（本番では404）
+
+#### 方法2: テキストファイル経由（従来方式）
+
+`add_new_vt.txt` に追加したVTページを翻訳し、vt_config.jsonを更新して全リポジトリにコミットするワークフロー：
 
 ```bash
 # 1. add_new_vt.txtにページを追加

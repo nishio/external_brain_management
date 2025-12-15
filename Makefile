@@ -1,4 +1,4 @@
-.PHONY: update status sync-mem sync-english sync-japanese sync-main sync-all vt-add vt-translate vt-move vt-update-config vt-commit vt-all vt-quick vt-status vt-interactive scrapbox-sync scrapbox-sync-en
+.PHONY: update status sync-mem sync-english sync-japanese sync-main sync-all vt-add vt-translate vt-move vt-update-config vt-commit vt-all vt-quick vt-status scrapbox-sync scrapbox-sync-en
 
 update:
 	git submodule update --init --remote --recursive
@@ -47,16 +47,8 @@ sync-all: sync-mem sync-english sync-japanese sync-main
 
 # VT Translation Workflow
 # =======================
-
-# Interactive VT page selection from Scrapbox links
-# Usage: make vt-interactive URL="https://scrapbox.io/nishio/ページ名"
-vt-interactive:
-	@if [ -z "$(URL)" ]; then \
-		echo "Error: URL parameter is required"; \
-		echo "Usage: make vt-interactive URL=\"https://scrapbox.io/nishio/ページ名\""; \
-		exit 1; \
-	fi
-	python3 scripts/add_vt_interactive.py "$(URL)"
+# Note: For interactive VT page selection, use the Web UI at /admin/vt (dev mode only)
+# Start dev server: cd modules/mem && yarn dev, then visit http://localhost:3000/admin/vt
 
 # Check VT translation status
 vt-status:
