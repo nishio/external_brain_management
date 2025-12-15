@@ -1,4 +1,4 @@
-.PHONY: update status sync-mem sync-english sync-japanese sync-main sync-all vt-add vt-translate vt-move vt-update-config vt-commit vt-all vt-quick vt-status scrapbox-sync scrapbox-sync-en
+.PHONY: update status sync-mem sync-english sync-japanese sync-main sync-all vt-add vt-translate vt-move vt-update-config vt-commit vt-all vt-quick vt-status vt-interactive scrapbox-sync scrapbox-sync-en
 
 update:
 	git submodule update --init --remote --recursive
@@ -48,6 +48,16 @@ sync-all: sync-mem sync-english sync-japanese sync-main
 # VT Translation Workflow
 # =======================
 
+# Interactive VT page selection from Scrapbox links
+# Usage: make vt-interactive URL="https://scrapbox.io/nishio/ページ名"
+vt-interactive:
+	@if [ -z "$(URL)" ]; then \
+		echo "Error: URL parameter is required"; \
+		echo "Usage: make vt-interactive URL=\"https://scrapbox.io/nishio/ページ名\""; \
+		exit 1; \
+	fi
+	python3 scripts/add_vt_interactive.py "$(URL)"
+
 # Check VT translation status
 vt-status:
 	@echo "=== VT Translation Status ==="
@@ -57,8 +67,13 @@ vt-status:
 	@cd modules/mem && node -e "const config = require('./vt_config.json'); const untranslated = config.illusts.filter(i => i.page_en === null); console.log('Untranslated pages:', untranslated.length); untranslated.slice(0, 5).forEach(i => console.log('  ID', i.id + ':', i.page_ja));"
 
 # Step 1: Add new VT pages from add_new_vt.txt to vt_config.json
+# Note: Pulls latest Markdown from GitHub (NOT from Scrapbox)
+# If you need fresh Scrapbox data, run `make scrapbox-sync` first
 vt-add:
-	@echo "=== Adding new VT pages from add_new_vt.txt ==="
+	@echo "=== Step 1a: Updating submodule to get latest Markdown files ==="
+	@cd modules/external_brain_in_markdown && git pull origin main
+	@echo ""
+	@echo "=== Step 1b: Adding new VT pages from add_new_vt.txt ==="
 	cd modules/mem && node scripts/add_from_add_new_vt.js
 
 # Step 2: Translate untranslated VT pages using OpenAI
@@ -95,8 +110,14 @@ vt-all: vt-add vt-translate vt-move vt-update-config vt-commit
 
 # Quick VT add+translate+push workflow
 # Usage: echo "ページ名 https://scrapbox.io/nishio/..." >> add_new_vt.txt && make vt-quick
+# Note: Pulls latest Markdown from GitHub (NOT from Scrapbox)
+# If you need fresh Scrapbox data, run `make scrapbox-sync` first
 vt-quick:
 	@echo "=== Quick VT workflow: add → translate → push ==="
+	@echo "=== Step 1: Updating submodule to get latest Markdown files ==="
+	@cd modules/external_brain_in_markdown && git pull origin main
+	@echo ""
+	@echo "=== Step 2: Adding new VT pages ==="
 	@cd modules/mem && node scripts/add_from_add_new_vt.js
 	@cd modules/mem && pnpm tsx scripts/translate_vt_pages.ts
 	@cd modules/mem && pnpm tsx scripts/move_vt_translations.ts
