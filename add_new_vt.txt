@@ -23,7 +23,7 @@ DRYと疎結合のトレードオフ https://scrapbox.io/nishio/DRY%E3%81%A8%E7%
 政策の修正 https://scrapbox.io/nishio/%E6%94%BF%E7%AD%96%E3%81%AE%E4%BF%AE%E6%AD%A3
 一時的に悪かったが結果的に良かった https://scrapbox.io/nishio/%E4%B8%80%E6%99%82%E7%9A%84%E3%81%AB%E6%82%AA%E3%81%8B%E3%81%A3%E3%81%9F%E3%81%8C%E7%B5%90%E6%9E%9C%E7%9A%84%E3%81%AB%E8%89%AF%E3%81%8B%E3%81%A3%E3%81%9F
 他人が何を知っているかの全体を知ることはできない https://scrapbox.io/nishio/%E4%BB%96%E4%BA%BA%E3%81%8C%E4%BD%95%E3%82%92%E7%9F%A5%E3%81%A3%E3%81%A6%E3%81%84%E3%82%8B%E3%81%8B%E3%81%AE%E5%85%A8%E4%BD%93%E3%82%92%E7%9F%A5%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84
-異なる観測範囲の複数の視点に支えられた判断 https://scrapbox.io/nishio/%E7%95%B0%E3%81%AA%E3%82%8B%E8%A6%B3%E6%B8%AC%E7%AF%84%E5%9B%B2%E3%81%AE%E8%A4%87%E6%95%B0%E3%81%AE%E8%A6%96%E7%82%B9%E3%81%AB%E6%94%AF%E3%81%88%E3%82%89%E3%82%8C%E3%81%9F%E5%88%A4%E6%96%AD]
+異なる観測範囲の複数の視点に支えられた判断 https://scrapbox.io/nishio/%E7%95%B0%E3%81%AA%E3%82%8B%E8%A6%B3%E6%B8%AC%E7%AF%84%E5%9B%B2%E3%81%AE%E8%A4%87%E6%95%B0%E3%81%AE%E8%A6%96%E7%82%B9%E3%81%AB%E6%94%AF%E3%81%88%E3%82%89%E3%82%8C%E3%81%9F%E5%88%A4%E6%96%AD
 拡大していくプロセスの不確実性 https://scrapbox.io/nishio/%E6%8B%A1%E5%A4%A7%E3%81%97%E3%81%A6%E3%81%84%E3%81%8F%E3%83%97%E3%83%AD%E3%82%BB%E3%82%B9%E3%81%AE%E4%B8%8D%E7%A2%BA%E5%AE%9F%E6%80%A7
 短期的減少と長期的増加 https://scrapbox.io/nishio/%E7%9F%AD%E6%9C%9F%E7%9A%84%E6%B8%9B%E5%B0%91%E3%81%A8%E9%95%B7%E6%9C%9F%E7%9A%84%E5%A2%97%E5%8A%A0
 回して切る https://scrapbox.io/nishio/%E5%9B%9E%E3%81%97%E3%81%A6%E5%88%87%E3%82%8B
@@ -249,3 +249,37 @@ LLMがもたらす組織構造の変化 https://scrapbox.io/nishio/LLM%E3%81%8C%
 複数の人間を一人ととらえるバグ https://scrapbox.io/nishio/%E8%A4%87%E6%95%B0%E3%81%AE%E4%BA%BA%E9%96%93%E3%82%92%E4%B8%80%E4%BA%BA%E3%81%A8%E3%81%A8%E3%82%89%E3%81%88%E3%82%8B%E3%83%90%E3%82%B0
 
 遅い自分はボトルネックだけど、それでも全体としては速く賢く動けている https://scrapbox.io/nishio/%E9%81%85%E3%81%84%E8%87%AA%E5%88%86%E3%81%AF%E3%83%9C%E3%83%88%E3%83%AB%E3%83%8D%E3%83%83%E3%82%AF%E3%81%A0%E3%81%91%E3%81%A9%E3%80%81%E3%81%9D%E3%82%8C%E3%81%A7%E3%82%82%E5%85%A8%E4%BD%93%E3%81%A8%E3%81%97%E3%81%A6%E3%81%AF%E9%80%9F%E3%81%8F%E8%B3%A2%E3%81%8F%E5%8B%95%E3%81%91%E3%81%A6%E3%81%84%E3%82%8B
+
+尖った人材のたとえ https://scrapbox.io/nishio/%E5%B0%96%E3%81%A3%E3%81%9F%E4%BA%BA%E6%9D%90%E3%81%AE%E3%81%9F%E3%81%A8%E3%81%88
+尖ったところを伸ばす https://scrapbox.io/nishio/%E5%B0%96%E3%81%A3%E3%81%9F%E3%81%A8%E3%81%93%E3%82%8D%E3%82%92%E4%BC%B8%E3%81%B0%E3%81%99
+スペシャリストとジェネラリスト https://scrapbox.io/nishio/%E3%82%B9%E3%83%9A%E3%82%B7%E3%83%A3%E3%83%AA%E3%82%B9%E3%83%88%E3%81%A8%E3%82%B8%E3%82%A7%E3%83%8D%E3%83%A9%E3%83%AA%E3%82%B9%E3%83%88
+大人が子供より優れているという思い込み https://scrapbox.io/nishio/%E5%A4%A7%E4%BA%BA%E3%81%8C%E5%AD%90%E4%BE%9B%E3%82%88%E3%82%8A%E5%84%AA%E3%82%8C%E3%81%A6%E3%81%84%E3%82%8B%E3%81%A8%E3%81%84%E3%81%86%E6%80%9D%E3%81%84%E8%BE%BC%E3%81%BF
+部下を育てる https://scrapbox.io/nishio/%E9%83%A8%E4%B8%8B%E3%82%92%E8%82%B2%E3%81%A6%E3%82%8B
+和で評価するとジェネラリストが選ばれる https://scrapbox.io/nishio/%E5%92%8C%E3%81%A7%E8%A9%95%E4%BE%A1%E3%81%99%E3%82%8B%E3%81%A8%E3%82%B8%E3%82%A7%E3%83%8D%E3%83%A9%E3%83%AA%E3%82%B9%E3%83%88%E3%81%8C%E9%81%B8%E3%81%B0%E3%82%8C%E3%82%8B
+
+湧き出しを発見した人が壁を立てることで差異が生まれる https://scrapbox.io/nishio/%E6%B9%A7%E3%81%8D%E5%87%BA%E3%81%97%E3%82%92%E7%99%BA%E8%A6%8B%E3%81%97%E3%81%9F%E4%BA%BA%E3%81%8C%E5%A3%81%E3%82%92%E7%AB%8B%E3%81%A6%E3%82%8B%E3%81%93%E3%81%A8%E3%81%A7%E5%B7%AE%E7%95%B0%E3%81%8C%E7%94%9F%E3%81%BE%E3%82%8C%E3%82%8B
+エントロピー増大の法則 https://scrapbox.io/nishio/%E3%82%A8%E3%83%B3%E3%83%88%E3%83%AD%E3%83%94%E3%83%BC%E5%A2%97%E5%A4%A7%E3%81%AE%E6%B3%95%E5%89%87
+AIが仲介するコミュニケーション https://scrapbox.io/nishio/AI%E3%81%8C%E4%BB%B2%E4%BB%8B%E3%81%99%E3%82%8B%E3%82%B3%E3%83%9F%E3%83%A5%E3%83%8B%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3
+しゃべれるマニフェスト https://scrapbox.io/nishio/%E3%81%97%E3%82%83%E3%81%B9%E3%82%8C%E3%82%8B%E3%83%9E%E3%83%8B%E3%83%95%E3%82%A7%E3%82%B9%E3%83%88
+2025年のブロードリスニング https://scrapbox.io/nishio/2025%E5%B9%B4%E3%81%AE%E3%83%96%E3%83%AD%E3%83%BC%E3%83%89%E3%83%AA%E3%82%B9%E3%83%8B%E3%83%B3%E3%82%B0
+ブロードリスニングの3種類のステークホルダー https://scrapbox.io/nishio/%E3%83%96%E3%83%AD%E3%83%BC%E3%83%89%E3%83%AA%E3%82%B9%E3%83%8B%E3%83%B3%E3%82%B0%E3%81%AE3%E7%A8%AE%E9%A1%9E%E3%81%AE%E3%82%B9%E3%83%86%E3%83%BC%E3%82%AF%E3%83%9B%E3%83%AB%E3%83%80%E3%83%BC
+LLMとPluralityの関係 https://scrapbox.io/nishio/LLM%E3%81%A8Plurality%E3%81%AE%E9%96%A2%E4%BF%82
+人間はLLMの乗り物 https://scrapbox.io/nishio/%E4%BA%BA%E9%96%93%E3%81%AFLLM%E3%81%AE%E4%B9%97%E3%82%8A%E7%89%A9
+LLMは専門家間のコミュニケーションを円滑にする https://scrapbox.io/nishio/LLM%E3%81%AF%E5%B0%82%E9%96%80%E5%AE%B6%E9%96%93%E3%81%AE%E3%82%B3%E3%83%9F%E3%83%A5%E3%83%8B%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92%E5%86%86%E6%BB%91%E3%81%AB%E3%81%99%E3%82%8B
+T型人材 https://scrapbox.io/nishio/T%E5%9E%8B%E4%BA%BA%E6%9D%90
+専門性に閉じこもる人 https://scrapbox.io/nishio/%E5%B0%82%E9%96%80%E6%80%A7%E3%81%AB%E9%96%89%E3%81%98%E3%81%93%E3%82%82%E3%82%8B%E4%BA%BA
+複数の分野をまたぐ人はコミュニケーションのハブになる https://scrapbox.io/nishio/%E8%A4%87%E6%95%B0%E3%81%AE%E5%88%86%E9%87%8E%E3%82%92%E3%81%BE%E3%81%9F%E3%81%90%E4%BA%BA%E3%81%AF%E3%82%B3%E3%83%9F%E3%83%A5%E3%83%8B%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%AE%E3%83%8F%E3%83%96%E3%81%AB%E3%81%AA%E3%82%8B
+ふたこぶの知識 https://scrapbox.io/nishio/%E3%81%B5%E3%81%9F%E3%81%93%E3%81%B6%E3%81%AE%E7%9F%A5%E8%AD%98
+会議出席代行 https://scrapbox.io/nishio/%E4%BC%9A%E8%AD%B0%E5%87%BA%E5%B8%AD%E4%BB%A3%E8%A1%8C
+
+動かない人は障壁にも機会にも気づかない https://scrapbox.io/nishio/%E5%8B%95%E3%81%8B%E3%81%AA%E3%81%84%E4%BA%BA%E3%81%AF%E9%9A%9C%E5%A3%81%E3%81%AB%E3%82%82%E6%A9%9F%E4%BC%9A%E3%81%AB%E3%82%82%E6%B0%97%E3%81%A5%E3%81%8B%E3%81%AA%E3%81%84
+制約の形状を調べる https://scrapbox.io/nishio/%E5%88%B6%E7%B4%84%E3%81%AE%E5%BD%A2%E7%8A%B6%E3%82%92%E8%AA%BF%E3%81%B9%E3%82%8B
+浅い探検と深い探検 https://scrapbox.io/nishio/%E6%B5%85%E3%81%84%E6%8E%A2%E6%A4%9C%E3%81%A8%E6%B7%B1%E3%81%84%E6%8E%A2%E6%A4%9C
+障害がなくなったことに気づかない https://scrapbox.io/nishio/%E9%9A%9C%E5%AE%B3%E3%81%8C%E3%81%AA%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%9F%E3%81%93%E3%81%A8%E3%81%AB%E6%B0%97%E3%81%A5%E3%81%8B%E3%81%AA%E3%81%84
+低きに流れて混雑する https://scrapbox.io/nishio/%E4%BD%8E%E3%81%8D%E3%81%AB%E6%B5%81%E3%82%8C%E3%81%A6%E6%B7%B7%E9%9B%91%E3%81%99%E3%82%8B
+進む先に壁があることは進まない理由にはならない https://scrapbox.io/nishio/%E9%80%B2%E3%82%80%E5%85%88%E3%81%AB%E5%A3%81%E3%81%8C%E3%81%82%E3%82%8B%E3%81%93%E3%81%A8%E3%81%AF%E9%80%B2%E3%81%BE%E3%81%AA%E3%81%84%E7%90%86%E7%94%B1%E3%81%AB%E3%81%AF%E3%81%AA%E3%82%89%E3%81%AA%E3%81%84
+最速のコースは最速ではない https://scrapbox.io/nishio/%E6%9C%80%E9%80%9F%E3%81%AE%E3%82%B3%E3%83%BC%E3%82%B9%E3%81%AF%E6%9C%80%E9%80%9F%E3%81%A7%E3%81%AF%E3%81%AA%E3%81%84
+進んで壁に当たって曲がる https://scrapbox.io/nishio/%E9%80%B2%E3%82%93%E3%81%A7%E5%A3%81%E3%81%AB%E5%BD%93%E3%81%9F%E3%81%A3%E3%81%A6%E6%9B%B2%E3%81%8C%E3%82%8B
+制約のゆるい成果を見下すのは滑稽 https://scrapbox.io/nishio/%E5%88%B6%E7%B4%84%E3%81%AE%E3%82%86%E3%82%8B%E3%81%84%E6%88%90%E6%9E%9C%E3%82%92%E8%A6%8B%E4%B8%8B%E3%81%99%E3%81%AE%E3%81%AF%E6%BB%91%E7%A8%BD
+開発の障害物が見えていないユーザの意見 https://scrapbox.io/nishio/%E9%96%8B%E7%99%BA%E3%81%AE%E9%9A%9C%E5%AE%B3%E7%89%A9%E3%81%8C%E8%A6%8B%E3%81%88%E3%81%A6%E3%81%84%E3%81%AA%E3%81%84%E3%83%A6%E3%83%BC%E3%82%B6%E3%81%AE%E6%84%8F%E8%A6%8B
+
