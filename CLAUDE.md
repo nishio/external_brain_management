@@ -195,9 +195,9 @@ make scrapbox-sync-en
 
 VTページを追加する方法は2つあります：
 
-#### 方法1: Web UI（推奨） - URL-based関連ページ発見
+#### 方法1: Admin Web UI（推奨） - 関連ページの視覚的な選択
 
-開発環境で `/admin/vt` にアクセスして、関連ページを視覚的に選択して追加：
+開発環境で `/admin/vt` にアクセスして、関連ページを画像付きで視覚的に選択して追加：
 
 ```bash
 # 開発サーバーを起動
@@ -206,7 +206,7 @@ yarn dev
 # http://localhost:3000/admin/vt にアクセス
 ```
 
-**使い方**:
+**Admin UIでの追加方法**:
 1. Scrapbox URLを入力（例: `https://scrapbox.io/nishio/すべての人は最先端`）
 2. 「Fetch Related Pages」ボタンをクリック
 3. 関連ページが画像付きで表示される:
@@ -216,10 +216,27 @@ yarn dev
 4. チェックボックスで複数選択 or 個別に「Add」ボタン
 5. 「Add Selected」で一括追加
 
-**特徴**:
+**Admin UI追加後の翻訳＆デプロイ**:
+
+Admin UIで追加したページは `vt_config.json` に `page_en: null` で登録されます。翻訳してデプロイするには：
+
+```bash
+# Admin UIで追加した未翻訳ページを翻訳してデプロイ（推奨）
+make vt-admin
+```
+
+**`vt-admin`の動作**:
+1. 未翻訳ページ（`page_en: null`）をOpenAI gpt-4oで翻訳
+2. 翻訳ファイルをexternal_brain_in_markdown_englishに移動
+3. vt_config.jsonに英語タイトルを自動設定
+4. 全リポジトリをcommit & push（自動rebase付き）
+5. Vercelに自動デプロイ
+
+**Admin UIの特徴**:
 - 画像を見ながら選択できる
 - 追加済み・スキップ済みページはグレーアウト表示
 - 重複は自動排除
+- 直接 `vt_config.json` を編集（`add_new_vt.txt` は使わない）
 - 開発環境のみアクセス可能（本番では404）
 
 #### 方法2: テキストファイル経由（従来方式）
@@ -235,11 +252,11 @@ make vt-quick
 ```
 
 **`vt-quick`の動作**:
-1. add_new_vt.txtからVTページを追加
+1. add_new_vt.txtからVTページをvt_config.jsonに追加
 2. OpenAI gpt-4oで翻訳
 3. 翻訳ファイルをexternal_brain_in_markdown_englishに移動
 4. vt_config.jsonを自動更新
-5. 全リポジトリをcommit & push（rebase付き）
+5. 全リポジトリをcommit & push（自動rebase付き）
 
 **メリット**:
 - 翻訳を忘れることがない

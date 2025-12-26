@@ -88,13 +88,13 @@ vt-commit:
 	@echo "=== Committing and pushing VT changes ==="
 	@cd modules/external_brain_in_markdown_english && \
 		(git add . && git diff --cached --quiet || \
-		(git commit -m "Add VT translations" && git push origin main))
+		(git commit -m "Add VT translations" && git pull --rebase && git push origin main))
 	@cd modules/mem && \
 		(git add vt_config.json && git diff --cached --quiet || \
-		(git commit -m "Update VT config" && git push origin main))
+		(git commit -m "Update VT config" && git pull --rebase && git push origin master))
 	@git add modules/mem modules/external_brain_in_markdown_english add_new_vt.txt && \
 		(git diff --cached --quiet || \
-		(git commit -m "chore: update VT" && git push origin main))
+		(git commit -m "chore: update VT" && git pull --rebase && git push origin main))
 
 # Full VT translation workflow (all steps)
 vt-all: vt-add vt-translate vt-move vt-update-config vt-commit
@@ -124,6 +124,32 @@ vt-quick:
 		(git diff --cached --quiet || \
 		(git commit -m "chore: sync submodules after VT updates" && git push origin main))
 	@echo "=== Quick VT workflow completed ==="
+
+# Admin UI workflow: Translate pages added via /admin/vt and deploy
+# Usage: After adding pages via Admin UI, run `make vt-admin`
+# This translates pages with page_en: null, moves them, updates config, and pushes
+vt-admin:
+	@echo "=== Admin UI workflow: translate → move → update → push ==="
+	@echo "=== Step 1: Translating untranslated pages (page_en: null) ==="
+	@cd modules/mem && pnpm tsx scripts/translate_vt_pages.ts
+	@echo ""
+	@echo "=== Step 2: Moving translation files ==="
+	@cd modules/mem && pnpm tsx scripts/move_vt_translations.ts
+	@echo ""
+	@echo "=== Step 3: Updating vt_config.json with English titles ==="
+	@cd modules/mem && node scripts/update_page_en_from_translations.js
+	@echo ""
+	@echo "=== Step 4: Committing and pushing ==="
+	@cd modules/external_brain_in_markdown_english && \
+		(git pull --rebase && git add . && git diff --cached --quiet || \
+		(git commit -m "feat: add VT translations from Admin UI" && git push origin main))
+	@cd modules/mem && \
+		(git add vt_config.json && git diff --cached --quiet || \
+		(git commit -m "feat: update VT config with Admin UI translations" && git push origin master))
+	@git add -A && \
+		(git diff --cached --quiet || \
+		(git commit -m "chore: sync submodules after Admin UI VT updates" && git push origin main))
+	@echo "=== Admin UI workflow completed - changes deployed to Vercel ==="
 
 # Scrapbox Sync (Manual)
 # ======================
